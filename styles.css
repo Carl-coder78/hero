@@ -381,16 +381,16 @@
 
 /* Rutas de imagen estrictamente tuyas */
 .featured-grid .card-2::before {
-  background-image: url('/img/Casa.jpeg');
+  background-image: url('./img/Casa.jpeg');
 }
 .featured-grid .card-3::before {
-  background-image: url('/img/Apartamento.jpeg');
+  background-image: url('./img/Apartamento.jpeg');
 }
 .featured-grid .card-4::before {
-  background-image: url('/img/moto.png');
+  background-image: url('./img/moto.png');
 }
 .featured-grid .card-5::before {
-  background-image: url('/img/carro.png');
+  background-image: url('./img/carro.png');
 }
 
 /* ------------------------------------------------
