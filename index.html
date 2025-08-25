@@ -1,0 +1,111 @@
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Hero</title>
+  <link rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+  />
+  <link rel="stylesheet" href="styles.css">
+  <script defer src="mainHero.js"></script>
+</head>
+<body>
+  <!-- NAV -->
+  <header>
+    <div class="logo-area">
+      <img src="/img/logo-vitriz.svg" alt="vitriz Logo" class="logo-img" />
+    </div>
+    <nav class="main-nav">
+      <ul class="nav-menu">
+        <li><a href="#">Inicio</a></li>
+        <li><a href="#">Proyectos</a></li>
+        <li><a href="#">Favoritos</a></li>
+        <li><a href="#">Contacto</a></li>
+      </ul>
+    </nav>
+    <div class="user-access">
+      <a href="#" class="cta-login">Iniciar sesión</a>
+    </div>
+  </header>
+
+  <!-- HERO -->
+  <section class="hero">
+    <aside class="hero-aside" aria-labelledby="hero-aside-title">
+      <div class="bloque-aside">
+        <h2 class="titulo-aside">¿Qué estás buscando hoy?</h2>
+      </div>
+
+      <div class="panel-grid">
+        <section class="left-panel aside-panel">
+          <ul class="categoria-lista">
+            <li>
+              <img src="img/location.png" alt="Lotes" />
+              <div class="texto-categoria">
+                <span class="titulo">Lotes</span>
+                <span class="descripcion">Empieza desde cero tu lugar soñado</span>
+              </div>
+            </li>
+            <li>
+              <img src="img/b-house.svg" alt="Casas" />
+              <div class="texto-categoria">
+                <span class="titulo">Casas</span>
+                <span class="descripcion">Un hogar para crecer con los tuyos</span>
+              </div>
+            </li>
+            <li>
+              <img src="img/apartment.png" alt="Apartamentos" />
+              <div class="texto-categoria">
+                <span class="titulo">Apartamentos</span>
+                <span class="descripcion">Vive alto, cómodo y conectado</span>
+              </div>
+            </li>
+            <li>
+              <img src="img/warehouse.png" alt="Bodegas" />
+              <div class="texto-categoria">
+                <span class="titulo">Bodegas</span>
+                <span class="descripcion">Tu espacio productivo, asegurado</span>
+              </div>
+            </li>
+            <li>
+              <img src="img/electric-car.png" alt="Vehículos" />
+              <div class="texto-categoria">
+                <span class="titulo">Vehículos</span>
+                <span class="descripcion">Encontrá tu compañero de ruta</span>
+              </div>
+            </li>
+          </ul>
+        </section>
+      </div>
+    </aside>
+
+    <div>
+        <!-- 4 manchas/cuadrantes -->
+        <div class="quad top-left"></div>
+        <div class="quad top-right"></div> 
+        <div class="quad bottom-left"></div>
+        <div class="quad bottom-right"></div>
+    </div> 
+
+    <!-- HEADLINE -->
+    <div class="hero-headline">
+      <span id="typewriter"></span>
+    </div>
+    
+    <!-- BUSCADOR -->
+    <form class="search-box" role="search" aria-label="Buscar en Vitriz">
+      <input
+        type="search"
+        placeholder="Buscar en Vitriz…"
+        aria-label="Buscar término"
+      />
+      <button type="submit" class="search-btn">
+        <i class="fa-solid fa-magnifying-glass"></i>
+      </button>
+    </form>
+  </section>
+
+</body>
+</html>
+
+

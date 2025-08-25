@@ -1,0 +1,379 @@
+    :root {
+      --ff-headline: 'Poppins', sans-serif;
+      --fw-bold: 700;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: sans-serif;
+      color: white;
+      background: #111;
+    }
+
+    /* HEADER FIJO */
+    header {
+      position: relative;
+      z-index: 10;
+      top: 0; left: 0;
+      width: 100%;
+      height: 70px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 2rem;
+      background: rgba(2, 97, 175, 0.3);
+      backdrop-filter: blur(6px);
+      z-index: 1000;
+    }
+    
+  .logo-area {
+  display: flex;
+  justify-content: flex-start; /* mantiene el logo pegado al inicio del bloque */
+  padding-left: 4vw; /* lo corre para alinearlo con el aside */
+}
+
+.logo-area .logo-img {
+  max-height: 50px; /* opcional: tamaño del logo */
+  height: auto;
+}
+
+    .main-nav ul {
+      list-style: none;
+      display: flex;
+      gap: 1.5rem;
+    }
+    .main-nav a {
+      text-decoration: none;
+      color: white;
+      font-weight: 500;
+    }
+    .user-access a { color: #ff7a00; font-weight: bold; }
+
+    /* HERO */
+.hero {
+      position: relative;
+      min-height: calc(100vh - 70px); /* resta lo que mide el header */
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+      z-index: 5;
+ }
+
+.hero::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: url("img/Fondo-edificio.png") no-repeat right center;
+  background-size: cover;
+  opacity: 0.150; /* ajusta */
+  mix-blend-mode: soft-light; /* 👈 deja pasar los quads */
+  z-index: 0;
+}
+
+    /* CAJAS GRADIENTE */
+.quad-container {
+  position: absolute;
+  inset: 0;
+  clip-path: polygon(
+    25vw 0,   /* inicio en la derecha del aside */
+    100% 0,
+    100% 100%,
+    25vw 100%
+  );
+  z-index: 1;
+  
+}
+.quad {
+      position: absolute;
+      width: 60%; height: 60%;
+      filter: blur(60px);
+      mix-blend-mode: screen;
+      opacity: 0.9;
+      pointer-events: none; /* 👈 que el hover de los shield se vea */
+}
+
+/* Paleta 1: Azul Profundo y Gris Claro */
+.top-left {
+  top: 0;
+  left: 0;
+  background: radial-gradient(circle at top left, #0cb9c5, transparent 70%);
+}
+.top-right {
+  top: 0;
+  right: 0;
+  background: radial-gradient(circle at top right, #274060, transparent 70%);
+}
+.bottom-left {
+  bottom: 0;
+  left: 0;
+  background: radial-gradient(circle at bottom left, #41000b, transparent 70%);
+}
+.bottom-right {
+  bottom: 0;
+  right: 0;
+  background: radial-gradient(circle at bottom right, #0365dd, transparent 70%);
+}
+
+    /* HEADLINE ARRIBA, CENTRADO */
+.hero-headline {
+  position: absolute;   /* 👈 cambiamos a absolute */
+  top: 5%;             /* 👈 sube al 10% desde arriba (ajustable) */
+  left: 50%;            /* 👈 centrado horizontal */
+  transform: translateX(-50%);  
+  z-index: 5;
+  text-align: center;
+  font-size: 2rem;
+  color: #fff;
+  padding: 0 1rem;
+  font-family: var(--ff-headline);
+  font-weight: var(--fw-bold);
+  line-height: 1.4;
+  left: calc(25vw + 37.5vw);
+  transform: translateX(-50%);
+  white-space: nowrap;
+  overflow-wrap: normal;
+  word-break: keep-all;
+}
+
+    #typewriter { white-space: nonwrap; }
+    #typewriter .dots { color: #ff7a00; }
+    #typewriter::after {
+      content: '|';
+      margin-left: 4px;
+      animation: blink 0.7s steps(1) infinite;
+    }
+    @keyframes blink {
+      0%, 50% { opacity: 1; }
+      51%, 100% { opacity: 0; }
+    }
+  
+    /* Buscador fuera del headline */
+.search-box {
+  position: absolute;
+  top: 22%;
+  left: calc(25vw + 37.5vw);
+  transform: translateX(-50%);
+  
+  display: flex;
+  align-items: center;
+  width: min(90%, 400px);
+  padding: 0.3rem 0.5rem;
+  
+  background-color: #ffffff;
+  border: 1px solid #dfe1e5;
+  border-radius: 24px;
+  box-shadow: 0 1px 6px rgba(32, 33, 36, 0.28);
+  
+  z-index: 10;
+}
+
+.search-box input {
+  flex: 1;
+  border: none;
+  outline: none;
+  
+  background: transparent;
+  padding: 0.6rem 0.8rem;
+  font-size: 1rem;
+  color: #202124;
+  
+  /* Placeholder estilo Google */
+  font-family: inherit;
+}
+.search-box input::placeholder {
+  color: #5f6368;
+}
+
+/* Botón sin fondo sólido, solo ícono y separación */
+.search-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  
+  width: 36px;
+  height: 36px;
+  margin-left: 0.3rem;
+  
+  border: none;
+  background: none;
+  cursor: pointer;
+  
+  color: #4285f4; /* azul Google */
+  font-size: 1.1rem;
+  transition: background 0.2s ease;
+}
+.search-btn:hover {
+  background: rgba(60, 64, 67, 0.08);
+  border-radius: 50%;
+}
+
+/* Focus accesible */
+.search-box input:focus,
+.search-btn:focus {
+  box-shadow: 0 1px 6px rgba(66, 133, 244, 0.6);
+}
+
+/* Evitar scroll horizontal si el texto es muy largo */
+.search-box {
+  overflow: hidden;
+}
+
+
+.categories {
+  display: flex;
+  justify-content: center;
+  gap: 2rem;
+  margin-top: 2rem;
+}
+
+.categories {
+  display: flex;
+  gap: 4rem; /* deja espacio pero no tanto */
+}
+
+.category svg {
+  width: 130px;
+  height: 130px;
+}
+
+/* Escudo más grande */
+/* .shield-icon-left,
+.shield-icon-right {
+  width: 260px;
+  height: 260px;
+} */
+
+.shield-group {
+  display: none;
+}
+
+.category:hover {
+  transform: scale(1.1);
+}
+
+/* seccion del aside  */
+.hero-aside {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  width: 25vw;
+  padding: 2rem 1.5rem;
+  background-color: #f8f7f7; /* sólido */
+  border-right: 2px solid rgba(255, 255, 255, 0.3);
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  color: #fff;
+  isolation: isolate; /* evita que los quads blendeen el fondo negro */
+  z-index: 5;
+}
+
+/* GRID ASIDE */
+.bloque-aside {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 2rem 1rem;
+}
+
+/* TÍTULO */
+.titulo-aside {
+  font-size: 1.8rem;
+  font-weight: bold;
+  color: #222;
+  margin-bottom: 1.5rem;
+  padding-left: 1rem;
+  text-align: left;
+}
+
+.panel-grid {
+  display: flex;
+  align-items: stretch;
+  gap: 1.5rem;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0;
+}
+
+/* TITULO NIVELADO CON LA CAJA */
+.titulo-aside {
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: #222;
+  margin: 0 auto -1rem auto;
+  padding-left: 2rem;
+  text-align: center;
+}
+
+/* PANEL IZQUIERDO */
+.left-panel {
+  width: 320px;
+  display: flex;
+  flex-direction: column;
+  background: #fff;
+  border: 1px solid #ccc;
+  border-radius: 1rem;
+  padding: 1.5rem 1rem;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.06);
+}
+
+/* LISTA */
+.categoria-lista {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+/* CADA ITEM */
+.categoria-lista li {
+  display: flex;
+  align-items: flex-start;
+  gap: 1rem;
+  padding: 0.9rem 1rem;
+  border: 1px solid #aaa;
+  border-radius: 0.8rem;
+  transition: background 0.2s ease;
+}
+
+.categoria-lista li:hover {
+  background: #f3f3f3;
+}
+
+/* ICONOS */
+.categoria-lista img {
+  width: 36px;
+  height: 36px;
+  object-fit: contain;
+  margin-top: 4px;
+}
+
+/* TEXTO DE CADA BLOQUE */
+.texto-categoria {
+  display: flex;
+  flex-direction: column;
+}
+
+.texto-categoria .titulo {
+  font-size: 1rem;
+  font-weight: bold;
+  color: #111;
+}
+
+.texto-categoria .descripcion {
+  font-size: 0.85rem;
+  color: #555;
+  line-height: 1.3;
+}
+
+
+
+
+
+
+
+
