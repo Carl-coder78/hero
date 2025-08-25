@@ -65,8 +65,10 @@
   content: "";
   position: absolute;
   inset: 0;
-  background: url("img/Fondo-edificio.png") no-repeat right center;
+  background: url("img/Fondo-edificio.png") no-repeat;
   background-size: cover;
+  background-position-x: clamp(5%, 60%, 95%); /* 👈 se mueve según ancho */
+  background-position-y: center;
   opacity: 0.150; /* ajusta */
   mix-blend-mode: soft-light; /* 👈 deja pasar los quads */
   z-index: 0;
@@ -124,8 +126,8 @@
   transform: translateX(-50%);  
   z-index: 5;
   text-align: center;
-  font-size: 2rem;
-  color: #fff;
+  font-size: 1.5rem;
+  color: #f8f9fa;
   padding: 0 1rem;
   font-family: var(--ff-headline);
   font-weight: var(--fw-bold);
@@ -160,8 +162,8 @@
   align-items: center;
   width: min(90%, 400px);
   padding: 0.3rem 0.5rem;
-  
-  background-color: #ffffff;
+
+  background-color: #f3f3f3;
   border: 1px solid #dfe1e5;
   border-radius: 24px;
   box-shadow: 0 1px 6px rgba(32, 33, 36, 0.28);
@@ -218,39 +220,6 @@
 /* Evitar scroll horizontal si el texto es muy largo */
 .search-box {
   overflow: hidden;
-}
-
-
-.categories {
-  display: flex;
-  justify-content: center;
-  gap: 2rem;
-  margin-top: 2rem;
-}
-
-.categories {
-  display: flex;
-  gap: 4rem; /* deja espacio pero no tanto */
-}
-
-.category svg {
-  width: 130px;
-  height: 130px;
-}
-
-/* Escudo más grande */
-/* .shield-icon-left,
-.shield-icon-right {
-  width: 260px;
-  height: 260px;
-} */
-
-.shield-group {
-  display: none;
-}
-
-.category:hover {
-  transform: scale(1.1);
 }
 
 /* seccion del aside  */
@@ -370,8 +339,127 @@
   line-height: 1.3;
 }
 
+/* Contenedor lineal bajo el aside (75 vw centrales) */
+.featured-grid {
+  position: absolute;
+  /* Y: justo debajo del search-box (top:32%) + espacio extra (4rem) */
+  top: calc(32% + 4rem);
+  /* X: inicia tras el aside (25vw) + 7.5vw de “respiración” */
+  left: calc(25vw + 7.5vw);
+
+  width: 60vw;             /* 0.8 × 75vw */
+  display: flex;
+  justify-content: center; /* reparte las 4 cards en el centro */
+  gap: 1rem;
+  overflow-x: auto;        /* scroll suave en móvil si hiciera falta */
+  padding-bottom: 0.5rem;  /* espacio para el scrollbar */
+}
+
+/* ---------------------------------------------
+   CARD: ratio 9/16, border-radius y overflow
+--------------------------------------------- */
+.featured-grid .card {
+  position: relative;
+  width: calc((60vw - 3rem) / 4); /* 4 cards + 3 gaps de 1rem */
+  aspect-ratio: 9 / 16;
+  border-radius: 12px;
+  overflow: hidden;
+  text-decoration: none;
+}
+
+/* -------------------------------
+   FOTO ARRIBA (75% de la altura)
+------------------------------- */
+.featured-grid .card::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0; bottom: 25%;  /* libera el 25% inferior */
+  background-size: cover;
+  background-position: center;
+  z-index: 0;
+}
+
+/* Rutas de imagen estrictamente tuyas */
+.featured-grid .card-2::before {
+  background-image: url('/img/Casa.jpeg');
+}
+.featured-grid .card-3::before {
+  background-image: url('/img/Apartamento.jpeg');
+}
+.featured-grid .card-4::before {
+  background-image: url('/img/moto.png');
+}
+.featured-grid .card-5::before {
+  background-image: url('/img/carro.png');
+}
+
+/* ------------------------------------------------
+   FONDO BLANCO ABAJO (25% de la altura) PARA PRECIO
+------------------------------------------------ */
+.featured-grid .card::after {
+  content: '';
+  position: absolute;
+  left: 0; right: 0; bottom: 0;
+  height: 25%;
+  background-color: #0f494e70;
+  z-index: 0;
+}
+
+/* ----------------------------------------
+   ETIQUETA DE COLOR (entre foto y blanco)
+---------------------------------------- */
+.featured-grid .card .label {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  top: calc(75% - 0.75rem); /* mitad dentro de la línea */
+  padding: 0.25rem 0.75rem;
+  border-radius: 6px;
+  color: #fff;
+  font-size: 0.9rem;
+  font-weight: bold;
+  z-index: 2;
+}
 
 
+/* Define un color distinto por categoría */
+.featured-grid .card-2 { --label-color: #ff7a00; }
+.featured-grid .card-3 { --label-color: #007aff; }
+.featured-grid .card-4 { --label-color: #28a745; }
+.featured-grid .card-5 { --label-color: #6f42c1; }
+
+/* Aplica el color de etiqueta desde la variable */
+.featured-grid .card .label {
+  background-color: var(--label-color);
+}
+
+/* --------------------------------
+   PRECIO DENTRO DEL BLOQUE BLANCO
+-------------------------------- */
+.featured-grid .card .price {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  bottom: 0.75rem;
+  background-color: #f3efef;  /* o el color corporativo */
+  color: #291717;
+  font-size: 1rem;
+  font-weight: bold;
+  padding: 0.4rem 0.8rem;
+  border-radius: 8px;
+  z-index: 2;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.2);
+}
+
+
+/* -----------------------------
+   HOVER: elevación suave
+----------------------------- */
+.featured-grid .card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+  transition: transform 0.2s, box-shadow 0.2s;
+}
 
 
 
